@@ -1,3 +1,5 @@
 index.html
 .env
 JWT.html
+node_modules
+npm-debug.log

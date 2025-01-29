@@ -3,7 +3,7 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
-
+require('dotenv').config();
 const app = express();
 app.use(express.json());
 
@@ -22,14 +22,14 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-require('dotenv').config(); // Load environment variables from .env file
-
+// Fixed values
 const USER_ID = process.env.USER_ID;
 const KID = process.env.KID;
 const ISS = process.env.ISS;
 const SECRET_KEY = process.env.SECRET_KEY;
-const SCOPE = process.env.SCOPE.split(","); // Converts the string to an array
+const SCOPE = ["tableau:views:embed"]; // Fixed scope value
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
+
 /**
  * @swagger
  * /gentoken:
@@ -66,7 +66,7 @@ const AUTH_TOKEN = process.env.AUTH_TOKEN;
 app.post("/gentoken", (req, res) => {
   const { wurl } = req.body;
   const authHeader = req.headers.authorization;
-
+  console.log(USER_ID,authHeader,AUTH_TOKEN);
   if (!authHeader || authHeader !== `Bearer ${AUTH_TOKEN}`) {
     return res.status(401).json({ error: "Unauthorized access" });
   }
