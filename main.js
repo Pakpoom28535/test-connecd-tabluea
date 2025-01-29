@@ -100,7 +100,7 @@ app.post("/gentoken", (req, res) => {
   res.json({ token });
 });
 
-const PORT = 3000;
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
