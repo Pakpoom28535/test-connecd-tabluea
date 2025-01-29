@@ -22,14 +22,14 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Fixed values
-const USER_ID = "pakpoom.s@transcode.co.th";
-const KID = "0a951f2b-264d-44d1-b9de-2413e3f15b40";
-const ISS = "2785c5bf-3faa-45ff-bdaf-9df5b6a63de7";
-const SECRET_KEY = "l1ZFO8mvFMK6kGJJSV+brq2xCTajYDRgRhnRLQQC0Tk=";
-const SCOPE = ["tableau:views:embed"]; // Fixed scope value
-const AUTH_TOKEN = "your_auth_token_here"; // Predefined authentication token
+require('dotenv').config(); // Load environment variables from .env file
 
+const USER_ID = process.env.USER_ID;
+const KID = process.env.KID;
+const ISS = process.env.ISS;
+const SECRET_KEY = process.env.SECRET_KEY;
+const SCOPE = process.env.SCOPE.split(","); // Converts the string to an array
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
 /**
  * @swagger
  * /gentoken:
