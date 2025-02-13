@@ -78,11 +78,11 @@ Running with Docker
 
 Build the Docker image:
 
-docker build -t token-api .
+docker build -t jwt-app .
 
 Run the container:
 
-docker run -p 3000:3000 --env-file .env token-api
+docker run -p 3001:3001 jwt-app
 
 License
 
